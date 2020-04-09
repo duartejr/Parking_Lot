@@ -2,7 +2,7 @@ package parking
 
 import java.util.*
 val scanner = Scanner(System.`in`)
-val parking = mutableMapOf<Int, Spot>()
+var parking = mutableMapOf<Int, Spot>()
 
 fun main() {
     var action: String = ""
@@ -44,14 +44,19 @@ fun main() {
     }
 }
 
+
 class Spot(var rg: String, var color: String)
 
+
 fun create(len: Int) {
+    parking = mutableMapOf<Int, Spot>()
+
     for (i in 1..len) {
         parking[i] = Spot("null", "null")
     }
     println("Created a parking lot with $len spots.")
 }
+
 
 fun park(rg: String, color: String) {
     for ((k, v) in parking) {
@@ -65,6 +70,7 @@ fun park(rg: String, color: String) {
     return
 }
 
+
 fun leave(spot: Int) {
     if (parking.getValue(spot).rg == "null") {
         println("There is no car in the spot $spot.")
@@ -73,6 +79,7 @@ fun leave(spot: Int) {
         println("Spot $spot is free.")
     }
 }
+
 
 fun status() {
     var isEmpty = true
