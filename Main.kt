@@ -40,6 +40,9 @@ fun main() {
                 }
             }
             "status" -> status()
+            "reg_by_color" -> regColor(command[1])
+            "spot_by_color" -> spotColor(command[1])
+            "spot_by_reg" -> spotReg(command[1])
         }
     }
 }
@@ -90,4 +93,46 @@ fun status() {
         }
     }
     if (isEmpty) println("Parking lot is empty.")
+}
+
+
+fun regColor(color: String) {
+    var out = ""
+    var isColor = false
+    for ((k, v) in parking) {
+        if (v.color == color.toLowerCase().capitalize()) {
+            out += v.rg + ", "
+            isColor = true
+        }
+    }
+    if (isColor) println(out.removeSuffix(", "))
+    else println("No cars with color $color were found.")
+}
+
+
+fun spotColor(color: String) {
+    var out = ""
+    var isColor = false
+    for ((k, v) in parking) {
+        if (v.color == color.toLowerCase().capitalize()) {
+            out += k.toString() + ", "
+            isColor = true
+        }
+    }
+    if (isColor) println(out.removeSuffix(", "))
+    else println("No cars with color $color were found.")
+}
+
+
+fun spotReg (reg: String) {
+    var out = ""
+    var isReg = false
+    for ((k, v) in parking) {
+        if (v.rg == reg) {
+            out += "$k, "
+            isReg = true
+        }
+    }
+    if (isReg) println(out.removeSuffix(", "))
+    else println("No cars with registration number $reg were found.")
 }
